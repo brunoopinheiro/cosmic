@@ -74,6 +74,11 @@ def test_get_template_file_returns_a_valid_file():
     assert template_file.exists() and template_file.is_file()
 
 
+def test_get_template_model_file_raises_not_implemented_error():
+    with pytest.raises(NotImplementedError):
+        CodeGenerator.get_template_model_file('other_dialect')
+
+
 def test_get_template_file_raises_not_implemented_error():
     with pytest.raises(NotImplementedError):
         CodeGenerator.get_template_file('other_dialect')

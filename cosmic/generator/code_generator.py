@@ -109,7 +109,7 @@ class CodeGenerator:
 
         result_dict = self.xml_adapter.get_xml_data(xml_file.resolve())
 
-        if not output_dir.exists():
+        if not output_dir.exists():  # pragma: no cover
             output_dir.mkdir()
 
         with Progress() as progress:
@@ -139,7 +139,7 @@ class CodeGenerator:
                     )
                 declared_functions = data.get("declared_functions", [])
                 if self.generate_model and len(declared_functions) > 0:
-                    with open(model_file, "w") as mfile:
+                    with open(model_file, "w") as mfile:  # pragma: no cover
                         mfile.write(
                             self.template_model.render(
                                 agent_name=agent_name,

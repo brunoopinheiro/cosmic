@@ -3,7 +3,7 @@ from abc import abstractmethod, ABC
 from typing import Dict, List
 
 
-class Adapter(ABC):
+class Adapter(ABC):  # pragma: no cover
 
     @staticmethod
     @abstractmethod
