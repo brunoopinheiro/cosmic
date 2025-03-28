@@ -24,7 +24,7 @@ jobs:
           run: poetry run pytest --junit-xml=pytest_results.xml || true
 
         - name: Post Markdown Table Comment
-          uses: brunoopinheiro/pr-comment-bot@v1.0.3
+          uses: brunoopinheiro/pr-comment-bot@v1.0.4
           if: always()
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
