@@ -1,0 +1,40 @@
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test-and-comment:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+                python-version: '3.10'
+
+        - name: Install poetry
+          run: pipx install poetry
+
+        - name: Install dependencies
+          run: poetry install --all-groups
+
+        - name: Install Pytest xml
+          run: poetry add -G dev pytest-xml
+
+        - name: Run tests
+          run: poetry run pytest --junitxml=report.xml || true
+
+        - name: Upload Pytest Results
+          uses: actions/upload-artifact@v3
+          with:
+            name: pytest-results
+            path: pytest_results.xml
+
+        - name: Post Markdown Table Comment
+          uses: brunoopinheiro/pr-comment-bot@v1.0.0
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            pr_number: ${{ github.event.pull_request.number }}
+            pytest_results: pytest_results.xml
