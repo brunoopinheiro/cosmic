@@ -33,7 +33,7 @@ jobs:
             path: pytest_results.xml
 
         - name: Post Markdown Table Comment
-          uses: brunoopinheiro/pr-comment-bot@v1.0.0
+          uses: brunoopinheiro/pr-comment-bot@v1.0.1
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
             pr_number: ${{ github.event.pull_request.number }}
