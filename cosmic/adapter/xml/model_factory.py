@@ -23,3 +23,5 @@ class ModelFactory:
             return UppaalAdapter()
         elif dialect == "astah":
             raise NotImplementedError("Type not supported yet.")
+        else:
+            raise ValueError("Not a valid dialect.")
