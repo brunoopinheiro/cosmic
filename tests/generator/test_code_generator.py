@@ -19,7 +19,7 @@ def code_generator():
 
 @pytest.fixture
 def xml_file():
-    file_path = Path('tests\\mock_files\\hcl_teste.xml')
+    file_path = Path('tests/mock_files/hcl_teste.xml').resolve()
     assert file_path.exists() and file_path.is_file()
     return file_path
 
