@@ -9,6 +9,6 @@ def xml_file() -> Path:
     Returns:
         Path: The path to the xml file.
     """
-    file_path = Path('tests\\mock_files\\hcl_teste.xml')
+    file_path = Path('tests/mock_files/hcl_teste.xml').resolve()
     assert file_path.exists() and file_path.is_file()
     return file_path

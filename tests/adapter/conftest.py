@@ -65,7 +65,7 @@ def uppaal_branchpoint_machine() -> ET.Element:
     This fixture depends on the file
     `tests/mock_files/branchpoint_machine.xml`.
     """
-    xml_path = Path('tests\\mock_files\\branchpoint_machine.xml')
+    xml_path = Path('tests/mock_files/branchpoint_machine.xml').resolve()
     assert xml_path.exists() and xml_path.is_file()
     tree = ET.parse(xml_path)
     root = tree.getroot()
