@@ -1,24 +1,28 @@
 # pragma: no cover
-from typing import TypedDict, List, NotRequired
+from typing import TypedDict, List
 
 
-class State(TypedDict):
+class State(TypedDict, total=False):
     """Represents a state in a machine template.
     It has a name and optional lists of `on_enter` and `on_exit` actions.
-    """
+
     name: str
     on_enter: NotRequired[List[str]]
     on_exit: NotRequired[List[str]]
+    """
+    name: str
+    on_enter: List[str]
+    on_exit: List[str]
 
 
-class Transition(TypedDict):
+class Transition(TypedDict, total=False):
     """Represents a transition in a machine template.
     The `trigger` key represents the transition name, while `source` and `dest`
     represent the source and destination states, respectively. Make sure that
     the values of these keys are valid state names.
     The keys `conditions`, `unless`, `after`, and `before` are optional lists
     of conditions that must be met for the transition to be triggered.
-    """
+
     trigger: str
     source: str  # assure that it represents a state name
     dest: str  # assure that it represents a state name
@@ -26,6 +30,14 @@ class Transition(TypedDict):
     unless: NotRequired[List[str]]
     after: NotRequired[List[str]]
     before: NotRequired[List[str]]
+    """
+    trigger: str
+    source: str  # assure that it represents a state name
+    dest: str  # assure that it represents a state name
+    conditions: List[str]
+    unless: List[str]
+    after: List[str]
+    before: List[str]
 
 
 class MachineTemplate(TypedDict):
@@ -34,8 +46,13 @@ class MachineTemplate(TypedDict):
     The `states` key is a list of states in the machine. See `State` for more
     information. The `transitions` key is a list of transitions in the machine.
     See `Transition` for more information.
+
+    initial_state: str  # assure that it represents a state name
+    states: List[State]
+    transitions: List[Transition]
+    declared_functions: NotRequired[List[str]]
     """
     initial_state: str
     states: List[State]
     transitions: List[Transition]
-    declared_functions: NotRequired[List[str]]
+    declared_functions: List[str]

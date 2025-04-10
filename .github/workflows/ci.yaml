@@ -22,18 +22,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "Ubuntu", "Windows" ]
+        target: [ "Ubuntu24", "Ubuntu22", "Windows" ]
         include:
-          - target: "Ubuntu"
+          - target: "Ubuntu24"
             platform: "linux"
             output-format: "system"
             runs-on: "ubuntu-latest"
             briefcase-args: "--target ubuntu:24.04"
 
-          - target: "Ubuntu"
-            plataform: "linux"
+          - target: "Ubuntu22"
+            platform: "linux"
             output-format: "system"
-            runs-on: "ubuntu-latest"
+            runs-on: "ubuntu:22.04"
             briefcase-args: "--target ubuntu:22.04"
 
           - target: "Windows"
@@ -48,11 +48,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
-
-      - name: Install flatpak
-        if: matrix.target == 'Flatpak'
-        run: sudo apt install flatpak flatpak-builder
+          python-version: "3.10"
 
       - name: Install Briefcase
         run: |
@@ -78,7 +74,7 @@ jobs:
       - name: Upload App
         uses: actions/upload-artifact@v4
         with:
-          name: exemplo-${{ matrix.target }}
+          name: cosmic-${{ matrix.target }}
           path: dist
           if-no-files-found: error
 
