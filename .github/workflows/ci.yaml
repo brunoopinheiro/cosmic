@@ -22,13 +22,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "AppImage", "Ubuntu", "Windows" ]
+        target: [ "Ubuntu", "Windows" ]
         include:
-          - target: "AppImage"
-            platform: "linux"
-            output-format: "appimage"
-            runs-on: "ubuntu-latest"
-
           - target: "Ubuntu"
             platform: "linux"
             output-format: "system"
