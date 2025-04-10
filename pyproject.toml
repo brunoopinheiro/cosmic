@@ -33,8 +33,6 @@ pytest-mock = "^3.14.0"
 test = 'pytest --cov=cosmic tests/ -vv'
 post_test = 'coverage html'
 
-
-
 [tool.poetry.group.doc.dependencies]
 mkdocs = "^1.6.1"
 
@@ -57,3 +55,13 @@ testpaths = [
 omit = [
     "cosmic/adapter/templates/*.mako",
 ]
+
+[tool.briefcase]
+project_name = "COSMIC"
+bundle = "com.rria"
+
+[tool.briefcase.app.cosmic]
+description = "Code Output for State Machine Interactive Creation"
+long_description = "COSMIC is a tool for generating code output for state machine interactive creation."
+sources = ['cosmic']
+test_sources = ['tests']
