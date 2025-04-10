@@ -30,6 +30,12 @@ jobs:
             runs-on: "ubuntu-latest"
             briefcase-args: "--target ubuntu:24.04"
 
+          - target: "Ubuntu"
+            plataform: "linux"
+            output-format: "system"
+            runs-on: "ubuntu-latest"
+            briefcase-args: "--target ubuntu:22.04"
+
           - target: "Windows"
             platform: "windows"
             output-format: "app"
