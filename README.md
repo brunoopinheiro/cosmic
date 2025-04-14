@@ -7,11 +7,6 @@ _Code Output for State Machine Interactive Creation_
     Code Output for State Machine Interactive Creation
   </h3>
 </div>
-<!-- <p align="center">
-  <a href="https://github.com/pantor/frankx/actions">
-    <img src="https://github.com/Curso-de-Robotica-e-IA/cosmic/workflows/CI/badge.svg" alt="CI">
-  </a>
-</p> -->
 
 `COSMIC` is a CLI tool capable to generate state machine code based on a XML representation of the state machine. The tool was initially designed to be used by the Residence in Robotics and AI at the UFPE's informatics center.
 
@@ -24,7 +19,13 @@ The idea behind COSMIC is to provide a tool capable of generating state machine 
 
 ## Installation
 
-The package is yet to be published on PyPI. For now, you can use poetry to install the package.
+You can install `COSMIC` using `pipx`
+
+At the repository, you can find the latest release of the package. Download the wheel file and install it using `pipx`:
+
+```bash
+pipx install <path_to_the_wheel_file>
+```
 
 ## Usage
 
