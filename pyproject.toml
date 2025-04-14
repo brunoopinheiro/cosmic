@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cosmic"
-version = "0.1.0"
+version = "1.0.0"
 description = "Code Output for State Machine Interactive Creation"
 authors = ["Bruno Pinheiro <bopj@softex.cin.ufpe.br>", "João Ribeiro <jrsl2@softex.cin.ufpe.br>"]
 license = "GNU AFFERO GENERAL PUBLIC LICENSE v3.0"
