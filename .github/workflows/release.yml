@@ -1,0 +1,36 @@
+name: Publish Wheel on release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  upload-release-asset:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Install Dependencies
+        run: poetry install --all-groups
+
+      - name: Build Wheel
+        run: poetry build -f wheel
+
+      - name: Create Release with Github CLI
+        shell: bash
+        run: |
+          FILES_WHEEL=$(ls ./dist/*.whl)
+          gh release create ${{ github.ref }} $FILES_WHEEL --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
