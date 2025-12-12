@@ -64,3 +64,13 @@ class ${agent_name}(GraphMachine):
             may_method_result = self.may_trigger(curr_transition)
             if may_method_result:
                 self.trigger(curr_transition)
+
+    def run(self, final_state: str = 'finished') -> None:
+        """Method to run the state machine until it reaches the final state.
+
+        Args:
+            final_state (str): The machine final state.
+        """
+        final_state_func = getattr(self, f'is_{final_state}')
+        while not final_state_func():
+            self.next_state()
