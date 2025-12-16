@@ -1,8 +1,13 @@
 <%!
 from mako.template import Template
 %>\
+from logging import Logger, getLogger
+
 from transitions import State
 from transitions.extensions import GraphMachine
+
+
+logger: Logger = getLogger(__name__)
 
 
 class ${agent_name}(GraphMachine):
@@ -63,6 +68,9 @@ class ${agent_name}(GraphMachine):
         for curr_transition in available_transitions:
             may_method_result = self.may_trigger(curr_transition)
             if may_method_result:
+                logger.info(
+                    f'[FSM] Triggering transition: {curr_transition} from state: {self.state}',  # noqa
+                )
                 self.trigger(curr_transition)
 
     def run(self, final_state: str = 'finished') -> None:
@@ -71,6 +79,7 @@ class ${agent_name}(GraphMachine):
         Args:
             final_state (str): The machine final state.
         """
+        logger.info(f'[FSM] Running state machine until final state: {final_state}')  # noqa
         final_state_func = getattr(self, f'is_{final_state}')
         while not final_state_func():
             self.next_state()
