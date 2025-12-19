@@ -8,6 +8,6 @@ class ${agent_name}Model:
 
     % for dec_func in declared_functions:
     def ${dec_func}(self):
-        raise NotImplementedError('Implement This Model Behavior.')
+        raise NotImplementedError('${dec_func} not implemented: Implement This Model Behavior.')
 
     % endfor
